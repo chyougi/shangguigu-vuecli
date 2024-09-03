@@ -3,7 +3,7 @@
     <label>
       <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)" />
       <span v-show="!todo.isEditing">{{ todo.title }}</span>
-      <input type="text" v-show="todo.isEditing" :value="todo.title" @blur="handleBlur(todo,$event)" ref="inputTitle">
+      <input v-show="todo.isEditing" type="text" :value="todo.title" @blur="handleBlur(todo, $event)" ref="inputTitle">
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
     <button v-show="!todo.isEditing" class="btn btn-edit" @click="handleEdit(todo)">编辑</button>
@@ -41,11 +41,9 @@ export default {
         this.$refs.inputTitle.focus()
       })
     },
-    //失去焦点回调（真正执行修改逻辑）
-    handleBlur(todo,e) {
+    handleBlur(todo, e) {
       todo.isEditing = false
-      if (!e.target.value.trim()) return alert('输入不能为空')
-      this.$bus.$emit('updateTodo',todo.id,e.target.value)
+      this.$bus.$emit('updateTodo', todo.id, e.target.value)
     }
   }
 };
