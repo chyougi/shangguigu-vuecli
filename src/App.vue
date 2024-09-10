@@ -1,26 +1,44 @@
 <template>
-  <div>
-    <button @click="getStudents">获取学生信息</button>
+  <div class="container">
+    <Category title="游戏">
+      <template slot-scope="atguigu">
+        <ul>
+          <li v-for="(game, index) in atguigu.games" :key="index">
+            {{ game }}
+          </li>
+        </ul>
+      </template>
+    </Category>
+    <Category title="游戏">
+      <template slot-scope="atguigu">
+        <ol>
+          <li v-for="(game, index) in atguigu.games" :key="index">{{ game }}</li>
+        </ol>
+      </template>
+    </Category>
+    <Category title="游戏">
+      <template slot-scope="atguigu">
+        <h4 v-for="(game, index) in atguigu.games" :key="index">{{ game }}</h4>
+      </template>
+    </Category>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import Category from "./components/Category.vue";
 export default {
   name: "App",
-  methods: {
-    getStudents() {
-      axios.get('http://localhost:8080/students').then(
-        response => { 
-          console.log('请求成功了',response.data);
-          
-        },
-        error => { 
-          console.log('请求失败了',error.message);
-          
-        }
-      )
-    }
-  },
+  components: { Category },
 };
 </script>
+
+<style>
+.container,
+.foot {
+  display: flex;
+  justify-content: space-around;
+}
+h4 {
+  text-align: center;
+}
+</style>
