@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "MySchool",
+  name: "MyStudent",
   data() {
     return {
       name: '张三',
