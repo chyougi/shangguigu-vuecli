@@ -295,3 +295,26 @@
                 }
                 </script>
    ```
+
+## Vuex
+6. 四个map方法的使用
+   1. mapState方法：用于帮助我们映射`state`中的数据为计算属性
+   ```javascript
+   computed:{
+        //借助mapState生成计算属性，从state中读取数据。（对象写法）
+        ...mapState({ sum: "sum", school: "school", subject: "subject" }),
+
+        //借助mapState生成计算属性，从state中读取数据。（数组写法）
+        ...mapState(['sum','school','subject']),
+   }
+   ```
+   2. mapGetters方法：用于帮助我们`getters`中的数据为计算属性
+   ```javascript
+      computed:{
+        //借助mapGetters生成计算属性，从getters中读取数据。（对象写法）
+        ...mapGetters({ bigSum:'bigSum' }),
+
+        //借助mapGetters生成计算属性，从getters中读取数据。（数组写法）
+        ...mapGetters(['bigSum'])
+   }
+   ```
